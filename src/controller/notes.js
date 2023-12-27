@@ -13,11 +13,11 @@ export const getNotes = async (req, res) => {
 
 export const createNote = async (req, res) => {
     try {
-        const { title, description } = req.body;
+        const { title, content } = req.body;
 
         const newNote = new Notes({
             title: title,
-            description: description
+            content: content
         });
 
         await newNote.save();
@@ -31,7 +31,7 @@ export const createNote = async (req, res) => {
 
 export const updateNote = async (req, res) => {
     try {
-        const { _id, title, description } = req.body;
+        const { _id, title, content } = req.body;
 
         const existingNote = await Notes.findById(_id);
 
@@ -40,7 +40,7 @@ export const updateNote = async (req, res) => {
         }
 
         existingNote.title = title;
-        existingNote.description = description;
+        existingNote.content = content;
 
         await existingNote.save();
 
